@@ -5,10 +5,59 @@
 
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true;
+}
+
+void AAuraPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+	
+	CursorTrace();
+}
+
+
+void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
+	
+	LastActor = ThisActor;
+	ThisActor = CursorHit.GetActor(); // using TScriptInterface<> no need to cast
+	
+	/*
+	 * Trace Scenario each frame:
+	 * A - LastActor == nullptr && ThisActor == nullptr		---> do nothing
+	 * C - LastActor == nullptr && ThisActor is valid		---> ThisActor Highlight()
+	 * C - LastActor is valid && ThisActor == nullptr		---> LastActor UnHighlight()
+	 * D - LastActor is valid && ThisActor is valid:
+	 *					LastActor != ThisActor				---> LastActor UnHighlight() && ThisActor Highlight()
+	 *					LastActor == ThisActor				---> do nothing
+	 */
+	
+	if (LastActor == nullptr)
+	{
+		if (ThisActor != nullptr) ThisActor->HighlightActor();
+	}
+	else
+	{
+		if (ThisActor == nullptr)
+		{
+			LastActor->UnHighlight();
+		} 
+		else
+		{
+			if (LastActor != ThisActor)
+			{
+				LastActor->UnHighlight();
+				ThisActor->HighlightActor();
+			}
+		}
+	}
 }
 
 void AAuraPlayerController::BeginPlay()
