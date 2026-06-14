@@ -20,6 +20,7 @@ class AURA_API IEnemyInterface
 {
 	GENERATED_BODY()
 
-	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	virtual void HighlightActor() = 0; // "= 0" means -> pure virtual function (abstract, need overriding in class) 
+	virtual void UnHighlight() = 0;
 };
