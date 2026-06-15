@@ -3,6 +3,8 @@
 
 #include "Character/AuraEnemy.h"
 
+#include "Aura/Aura.h"
+
 AAuraEnemy::AAuraEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
@@ -10,11 +12,14 @@ AAuraEnemy::AAuraEnemy()
 
 void AAuraEnemy::HighlightActor()
 {
-	if (!HighlightMaterial) return;
-	GetMesh()->SetOverlayMaterial(HighlightMaterial);
+	GetMesh()->SetRenderCustomDepth(true);
+	GetMesh()->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED); // macro parameter defined in Aura.h
+	Weapon->SetRenderCustomDepth(true);
+	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 }
 
 void AAuraEnemy::UnHighlight()
 {
-	GetMesh()->SetOverlayMaterial(nullptr);
+	GetMesh()->SetRenderCustomDepth(false);
+	Weapon->SetRenderCustomDepth(false);
 }

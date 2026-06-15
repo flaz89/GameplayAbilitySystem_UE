@@ -21,8 +21,4 @@ public:
 	// EnemyInterface functions 
 	virtual void HighlightActor() override;
 	virtual void UnHighlight() override;
-	
-	UPROPERTY(EditDefaultsOnly, Category="Materials")
-	TObjectPtr<UMaterialInstance> HighlightMaterial;
-	
 };
