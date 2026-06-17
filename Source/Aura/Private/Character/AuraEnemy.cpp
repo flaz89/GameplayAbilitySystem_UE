@@ -32,3 +32,11 @@ void AAuraEnemy::UnHighlight()
 	GetMesh()->SetRenderCustomDepth(false);
 	Weapon->SetRenderCustomDepth(false);
 }
+
+void AAuraEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	// for AI-controlled character you have to specify who is the owner/avatar of ASC and you can do it begin play 
+	AbilitySystemComponent->InitAbilityActorInfo(this, this); 
+}

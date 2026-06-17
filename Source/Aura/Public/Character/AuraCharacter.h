@@ -19,6 +19,10 @@ class AURA_API AAuraCharacter : public AAuraCharacterBase
 public:
 	AAuraCharacter();
 	
+	/** Init AbilityActorInfo of ASC after the controller possesed the pawn, we need to override 2 functions from APawn*/
+	virtual void PossessedBy(AController* NewController) override; // server
+	virtual void OnRep_PlayerState() override; // client
+	
 protected:
 	
 private:
@@ -27,5 +31,7 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, Category="Camera")
 	TObjectPtr<UCameraComponent> Camera;
+	
+	void InitAbilityActorInfo();
 	
 };
