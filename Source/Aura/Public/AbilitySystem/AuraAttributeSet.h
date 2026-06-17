@@ -3,13 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AttributeSet.h"
+#include "AuraAttributeSet.generated.h"
 
 /**
  * 
  */
-class AURA_API AuraAttributeSet
+UCLASS()
+class AURA_API UAuraAttributeSet : public UAttributeSet
 {
-public:
-	AuraAttributeSet();
-	~AuraAttributeSet();
+	GENERATED_BODY()
 };
