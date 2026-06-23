@@ -4,6 +4,7 @@
 #include "Character/AuraCharacterBase.h"
 
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 // constructor
 AAuraCharacterBase::AAuraCharacterBase()

@@ -5,6 +5,9 @@
 
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Engine/HitResult.h"
+#include "Engine/LocalPlayer.h"
+#include "GameFramework/Pawn.h"
 #include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
