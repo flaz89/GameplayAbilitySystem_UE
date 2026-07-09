@@ -46,7 +46,7 @@ void AAuraEffectActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	// Dynamic multi-cast delegates from UPrimitiveComponent class
+	// Dynamic multicast delegates from UPrimitiveComponent class
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AAuraEffectActor::OnOverlap);
 	Sphere->OnComponentEndOverlap.AddDynamic(this, &AAuraEffectActor::EndOverlap);
 }
